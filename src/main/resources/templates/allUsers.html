@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Users </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Name</th>
+                    <th> Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td><span th:text="${user.name}"> Name </span></td>
+                    <td><span th:text="${user.address}"> Address </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success" href="#" th:href="@{/users/add}"> Add User </a>
+            <a class="btn btn-primary" href="#" th:href="@{/users/edit}"
+               th:classappend="${users.empty} ? 'disabled' : ''"> Edit User </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

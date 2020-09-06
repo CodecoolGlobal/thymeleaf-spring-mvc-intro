@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Add User </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-info" href="#" th:href="@{/users}"> Back to User List </a>
+            <form action="#" class="form-horizontal"
+                  th:action="@{/users}"
+                  th:object="${form}"
+                  method="post">
+                <fieldset>
+					<span class="pull-right">
+						    <input type="submit" id="submitButton" class="btn btn-success" th:value="Save">
+						    <input type="reset" id="resetButton" class="btn btn-danger" th:value="Reset"/>
+					</span>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th> Name</th>
+                            <th> Address</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user, itemStat : *{users}">
+                            <td><input th:placeholder="Name + ' ' + ${itemStat.count}"
+                                       th:field="*{users[__${itemStat.index}__].name}" required/></td>
+
+                            <td><input th:placeholder="Address + ' ' + ${itemStat.count}"
+                                       th:field="*{users[__${itemStat.index}__].address}" required/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
