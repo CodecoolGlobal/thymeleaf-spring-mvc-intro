@@ -1,15 +1,11 @@
 package com.raczkowski.springintro.controller;
 
-import com.raczkowski.springintro.dto.UserCreationDto;
 import com.raczkowski.springintro.dto.UserDto;
 import com.raczkowski.springintro.model.User;
 import com.raczkowski.springintro.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/users")
@@ -40,6 +36,15 @@ public class UsersController {
         model.addAttribute("user", new UserDto());
 
         return "addUsersForm";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable String id, Model model) {
+
+
+
+
+        return "redirect:users";
     }
 
 }

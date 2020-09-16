@@ -1,13 +1,9 @@
 package com.raczkowski.springintro.model;
 
 public class User {
-
     private int id;
     private String name;
     private String address;
-
-    public User() {
-    }
 
     public User(String name, String address) {
         this.name = name;
