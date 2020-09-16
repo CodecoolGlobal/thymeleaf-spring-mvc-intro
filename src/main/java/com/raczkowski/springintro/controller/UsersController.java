@@ -1,6 +1,7 @@
 package com.raczkowski.springintro.controller;
 
 import com.raczkowski.springintro.dto.UserCreationDto;
+import com.raczkowski.springintro.dto.UserDto;
 import com.raczkowski.springintro.model.User;
 import com.raczkowski.springintro.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -27,20 +28,16 @@ public class UsersController {
     }
 
     @PostMapping
-    public String addUser(@ModelAttribute UserCreationDto form, Model model) {
-        User user = form.getUsers().get(0);
+    public String addUser(@ModelAttribute UserDto userDto, Model model) {
+        User user = new User(userDto.getName(), userDto.getAddress());
         usersService.addUser(user);
-
-        model.addAttribute("users", usersService.getAllUsers());
 
         return "redirect:users";
     }
 
     @GetMapping("/add")
     public String getAddUsersForm(Model model) {
-        UserCreationDto usersForm = new UserCreationDto();
-        usersForm.addUser(new User());
-        model.addAttribute("form", usersForm);
+        model.addAttribute("user", new UserDto());
 
         return "addUsersForm";
     }

@@ -15,7 +15,7 @@
             <a class="btn btn-info" href="#" th:href="@{/users}"> Back to User List </a>
             <form action="#" class="form-horizontal"
                   th:action="@{/users}"
-                  th:object="${form}"
+                  th:object="${user}"
                   method="post">
                 <fieldset>
 					<span class="pull-right">
@@ -30,13 +30,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="user, itemStat : *{users}">
-                            <td><input th:placeholder="Name + ' ' + ${itemStat.count}"
-                                       th:field="*{users[__${itemStat.index}__].name}" required/></td>
+                            <td><input th:placeholder="Name"
+                                       th:field="*{name}" required/></td>
 
-                            <td><input th:placeholder="Address + ' ' + ${itemStat.count}"
-                                       th:field="*{users[__${itemStat.index}__].address}" required/></td>
-                        </tr>
+                            <td><input th:placeholder="Address"
+                                       th:field="*{address}" required/></td>
                         </tbody>
                     </table>
                 </fieldset>
