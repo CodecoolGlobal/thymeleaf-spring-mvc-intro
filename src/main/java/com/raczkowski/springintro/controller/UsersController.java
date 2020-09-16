@@ -40,10 +40,6 @@ public class UsersController {
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable String id, Model model) {
-
-
-
-
         return "redirect:users";
     }
 
