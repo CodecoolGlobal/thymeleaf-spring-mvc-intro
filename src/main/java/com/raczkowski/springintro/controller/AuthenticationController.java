@@ -26,6 +26,10 @@ public class AuthenticationController {
         this.userService = userService;
     }
 
+    /**
+     * request.getSession(boolean create) - Returns the current HttpSession associated with this request or,
+     * if there is no current session and create is true, returns a new session.
+     */
     @PostMapping("/login")
     public void processLoginAttempt(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -46,6 +50,10 @@ public class AuthenticationController {
         return "login";
     }
 
+    /**
+     * request.getSession(false) -Returns the current HttpSession associated with this request or,
+     * if there is no current session and create is false, do not create a new session
+     */
     @GetMapping("/logout")
     public void processLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
