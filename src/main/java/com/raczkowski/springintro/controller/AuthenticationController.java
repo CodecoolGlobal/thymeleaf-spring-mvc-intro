@@ -46,5 +46,14 @@ public class AuthenticationController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public void processLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        response.sendRedirect(request.getContextPath() + "/loginForm");
+    }
 
 }
