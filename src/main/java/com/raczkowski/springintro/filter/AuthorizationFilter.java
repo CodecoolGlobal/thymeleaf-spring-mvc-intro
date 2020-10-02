@@ -12,6 +12,10 @@ public class AuthorizationFilter implements Filter {
 
     }
 
+    /**
+     * in this case I have used httpServletRequest.getSession(false) - because I wanted to check if there is current
+     * session - so I don't want to create a new one
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
