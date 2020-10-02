@@ -31,12 +31,10 @@ public class AuthenticationController {
                                     HttpServletResponse response,
                                     @ModelAttribute("credentialsDto") CredentialsDto credentialsDto) throws IOException {
         Optional<User> maybeUser = userService.login(credentialsDto);
-
-
         if (maybeUser.isPresent()) {
             HttpSession session = request.getSession(true);
             session.setAttribute("username", maybeUser.get().getName());
-            response.sendRedirect(request.getContextPath() + "/getUsers");
+            response.sendRedirect(request.getContextPath() + "/users");
         } else {
             response.sendRedirect(request.getContextPath() + "/loginForm");
         }
