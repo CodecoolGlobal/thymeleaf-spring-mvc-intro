@@ -23,7 +23,6 @@
                 <tr th:each="user : ${users}">
                     <td><span th:text="${user.name}"> Name </span></td>
                     <td><span th:text="${user.address}"> Address </span></td>
-                    <td><span th:text="${user.id}"> id </span></td>
                     <td><a class="btn btn-success" href="#" th:href="@{/users/delete/{id}(id=${user.id})}"> Delete User </a></td>
                 </tr>
                 </tbody>

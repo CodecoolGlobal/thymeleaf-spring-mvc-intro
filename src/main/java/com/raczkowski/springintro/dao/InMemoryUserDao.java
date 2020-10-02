@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 @Repository
 public class InMemoryUserDao implements UserDao {
     private final List<User> users = Stream.of(
-            new User(1, "Przemek Raczkowski", "Kraków, ul. Kijowska 54"),
-            new User(2, "Tomasz Hajto", "Berlin, Herta StraBe"))
+            new User(1, "praczkowski@gmail.com", "Kraków, ul. Kijowska 54", "1234"),
+            new User(2, "tomasz.hajto@herta.de", "Berlin, Herta StraBe", "chrysler"))
             .collect(Collectors.toList());
 
     @Override

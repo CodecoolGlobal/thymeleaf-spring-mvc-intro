@@ -23,13 +23,13 @@ public class UsersController {
         return "allUsers";
     }
 
-    @PostMapping
-    public String addUser(@ModelAttribute UserDto userDto, Model model) {
-        User user = new User(userDto.getName(), userDto.getAddress());
-        usersService.addUser(user);
-
-        return "redirect:users";
-    }
+//    @PostMapping
+//    public String addUser(@ModelAttribute UserDto userDto, Model model) {
+//        User user = new User(userDto.getName(), userDto.getAddress());
+//        usersService.addUser(user);
+//
+//        return "redirect:users";
+//    }
 
     @GetMapping("/add")
     public String getAddUsersForm(Model model) {

@@ -1,12 +1,12 @@
 package com.raczkowski.springintro.service;
 
 import com.raczkowski.springintro.dao.UserDao;
+import com.raczkowski.springintro.dto.CredentialsDto;
 import com.raczkowski.springintro.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 public class UserService {
@@ -29,6 +29,13 @@ public class UserService {
 
     public void addUser(User user) {
         userDao.addUser(user);
+    }
+
+    public Optional<User> login(CredentialsDto credentialsDto) {
+        return userDao.getUsers().stream()
+                .filter(user -> user.getName().equals(credentialsDto.getUsername())
+                        && user.getPassword().equals(credentialsDto.getPassword()))
+                .findAny();
     }
 
 }
