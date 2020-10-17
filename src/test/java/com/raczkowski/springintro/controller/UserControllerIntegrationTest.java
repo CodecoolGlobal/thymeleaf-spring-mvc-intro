@@ -3,7 +3,6 @@ package com.raczkowski.springintro.controller;
 
 import com.raczkowski.springintro.dto.UserDto;
 import com.raczkowski.springintro.entity.User;
-import com.raczkowski.springintro.TestConfiguration;
 import com.raczkowski.springintro.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestConfiguration.class})
+@ContextConfiguration(classes = {UserControllerIntegrationTestConfiguration.class})
 @WebAppConfiguration
 public class UserControllerIntegrationTest {
 

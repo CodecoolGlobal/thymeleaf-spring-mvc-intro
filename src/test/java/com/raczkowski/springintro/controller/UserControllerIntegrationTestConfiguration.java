@@ -1,6 +1,5 @@
-package com.raczkowski.springintro;
+package com.raczkowski.springintro.controller;
 
-import com.raczkowski.springintro.controller.UsersController;
 import com.raczkowski.springintro.service.UserService;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
 @Configuration
-public class TestConfiguration {
+public class UserControllerIntegrationTestConfiguration {
 
     @Bean
     public UserService userService() {
