@@ -2,6 +2,7 @@ package com.raczkowski.springintro.controller;
 
 import com.raczkowski.springintro.dto.CredentialsDto;
 import com.raczkowski.springintro.model.User;
+import com.raczkowski.springintro.service.AuthenticationService;
 import com.raczkowski.springintro.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,10 @@ import java.util.Optional;
 @RequestMapping
 public class AuthenticationController {
 
-    private UserService userService;
+    private AuthenticationService authenticationService;
 
-    public AuthenticationController(UserService userService) {
-        this.userService = userService;
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
     }
 
     /**
@@ -34,7 +35,7 @@ public class AuthenticationController {
     public void processLoginAttempt(HttpServletRequest request,
                                     HttpServletResponse response,
                                     @ModelAttribute("credentialsDto") CredentialsDto credentialsDto) throws IOException {
-        Optional<User> maybeUser = userService.login(credentialsDto);
+        Optional<User> maybeUser = authenticationService.login(credentialsDto);
         if (maybeUser.isPresent()) {
             HttpSession session = request.getSession(true);
             session.setAttribute("username", maybeUser.get().getName());

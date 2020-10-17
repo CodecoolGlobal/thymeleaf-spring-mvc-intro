@@ -1,7 +1,6 @@
 package com.raczkowski.springintro.service;
 
 import com.raczkowski.springintro.dao.UserDao;
-import com.raczkowski.springintro.dto.CredentialsDto;
 import com.raczkowski.springintro.model.User;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +30,8 @@ public class UserService {
         userDao.addUser(user);
     }
 
-    public Optional<User> login(CredentialsDto credentialsDto) {
-        return userDao.getUsers().stream()
-                .filter(user -> user.getName().equals(credentialsDto.getUsername())
-                        && user.getPassword().equals(credentialsDto.getPassword()))
-                .findAny();
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
     }
 
 }
