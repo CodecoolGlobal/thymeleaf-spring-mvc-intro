@@ -1,8 +1,10 @@
-package com.raczkowski.springintro.service;
+package com.raczkowski.springintro.controller;
 
 
 import com.raczkowski.springintro.dto.UserDto;
 import com.raczkowski.springintro.entity.User;
+import com.raczkowski.springintro.TestConfiguration;
+import com.raczkowski.springintro.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

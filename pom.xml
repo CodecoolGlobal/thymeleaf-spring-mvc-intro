@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>com.raczkowski</groupId>
-    <artifactId>spring-mvc-intro</artifactId>
+    <artifactId>spring-mvc-thymeleaf-orm-mvc-tests</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-mvc-intro</name>
-    <description>spring-mvc-intro</description>
+    <name>spring-mvc-thymeleaf-orm-mvc-tests</name>
+    <description>spring-mvc-thymeleaf-orm-mvc-tests</description>
 
     <properties>
         <java.version>8</java.version>

@@ -1,6 +1,7 @@
-package com.raczkowski.springintro.service;
+package com.raczkowski.springintro;
 
 import com.raczkowski.springintro.controller.UsersController;
+import com.raczkowski.springintro.service.UserService;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
