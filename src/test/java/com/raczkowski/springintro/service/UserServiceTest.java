@@ -1,6 +1,6 @@
 package com.raczkowski.springintro.service;
 
-import com.raczkowski.springintro.UserNotFoundException;
+import com.raczkowski.springintro.exception.UserNotFoundException;
 import com.raczkowski.springintro.entity.User;
 import com.raczkowski.springintro.repository.UserRepository;
 import org.junit.Test;

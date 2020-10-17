@@ -1,4 +1,4 @@
-package com.raczkowski.springintro;
+package com.raczkowski.springintro.exception;
 
 public class UserNotFoundException extends RuntimeException {
 
