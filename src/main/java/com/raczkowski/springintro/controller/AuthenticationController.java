@@ -1,9 +1,8 @@
 package com.raczkowski.springintro.controller;
 
 import com.raczkowski.springintro.dto.CredentialsDto;
-import com.raczkowski.springintro.model.User;
+import com.raczkowski.springintro.entity.User;
 import com.raczkowski.springintro.service.AuthenticationService;
-import com.raczkowski.springintro.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

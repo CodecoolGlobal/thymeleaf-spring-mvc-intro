@@ -1,20 +1,24 @@
-package com.raczkowski.springintro.dto;
+package com.raczkowski.springintro.entity;
 
-public class UserDto {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String address;
 
-    public UserDto() {
+    public User() {
     }
 
-    public UserDto(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
-
-    public UserDto(Long id, String name, String address) {
-        this.id = id;
+    public User(String name,
+                String address) {
         this.name = name;
         this.address = address;
     }
