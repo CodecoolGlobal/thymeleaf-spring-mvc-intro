@@ -1,5 +1,7 @@
 package com.raczkowski.springintro.dto;
 
+import java.util.Objects;
+
 public class UserDto {
     private Long id;
     private String name;
@@ -41,5 +43,19 @@ public class UserDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return Objects.equals(name, userDto.name) &&
+                Objects.equals(address, userDto.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, address);
     }
 }
