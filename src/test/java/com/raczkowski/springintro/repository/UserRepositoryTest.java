@@ -11,8 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @Sql("populate_users.sql")
@@ -28,11 +27,9 @@ public class UserRepositoryTest {
         User user = new User("Przemek", "Raczkowski");
 
         // when
-        User saved = userRepository.save(user);
+        userRepository.save(user);
 
-        Optional<User> maybeSavedUser = userRepository.findById(saved.getId());
-
-        assertTrue(maybeSavedUser.isPresent());
+        assertNotNull(user.getId());
     }
 
     @Test
