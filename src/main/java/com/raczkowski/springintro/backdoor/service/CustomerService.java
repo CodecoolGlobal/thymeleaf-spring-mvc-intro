@@ -4,23 +4,43 @@ import com.raczkowski.springintro.backdoor.dto.CustomerDto;
 import com.raczkowski.springintro.backdoor.dto.OrderDto;
 import com.raczkowski.springintro.backdoor.exception.CustomerNotFoundException;
 import com.raczkowski.springintro.backdoor.exception.OrderNotFoundException;
+import com.raczkowski.springintro.backdoor.util.DateComparator;
+import com.raczkowski.springintro.backdoor.util.SortType;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.raczkowski.springintro.backdoor.util.SortType.DATE;
+import static java.util.Arrays.asList;
 
 @Service
 public class CustomerService {
 
+    private DateComparator dateComparator;
     private List<CustomerDto> customers;
 
-    public CustomerService() {
+
+    public CustomerService(DateComparator dateComparator) {
+        this.dateComparator = dateComparator;
         this.customers = initializeCustomers();
     }
 
     public List<CustomerDto> getCustomers() {
+        return customers;
+    }
+
+    public List<CustomerDto> getSortedCustomers(SortType sortType) {
+        if (sortType.equals(DATE)) {
+            return customers.stream()
+                    .sorted((c1, c2) -> dateComparator.compare(c1.getRegistrationDate(),
+                            c2.getRegistrationDate()))
+                    .collect(Collectors.toList());
+        }
+
         return customers;
     }
 
@@ -68,30 +88,35 @@ public class CustomerService {
         customers.add(new CustomerDto(1L,
                 "Przemek",
                 "Krakow",
-                Arrays.asList(new OrderDto(1L, "TV"),
+                new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime(),
+                asList(new OrderDto(1L, "TV"),
                         new OrderDto(2L, "Book"))));
 
         customers.add(new CustomerDto(2L, "Tomek",
                 "Lublin",
-                Arrays.asList(new OrderDto(3L, "TV"),
+                new GregorianCalendar(2018, Calendar.JANUARY, 11).getTime(),
+                asList(new OrderDto(3L, "TV"),
                         new OrderDto(4L, "Book"))));
 
         customers.add(
                 new CustomerDto(3L,
                         "Czarek",
                         "Warszawa",
-                        Arrays.asList(new OrderDto(5L, "TV"),
+                        new GregorianCalendar(1998, Calendar.DECEMBER, 11).getTime(),
+                        asList(new OrderDto(5L, "TV"),
                                 new OrderDto(6L, "Book"))));
         customers.add(
                 new CustomerDto(4L,
                         "Franek",
                         "Poznań",
-                        Arrays.asList(new OrderDto(7L, "TV"),
+                        new GregorianCalendar(2012, Calendar.OCTOBER, 11).getTime(),
+                        asList(new OrderDto(7L, "TV"),
                                 new OrderDto(8L, "Book"))));
         customers.add(new CustomerDto(5L,
                 "Jerzy",
                 "Bochnia",
-                Arrays.asList(new OrderDto(9L, "TV"),
+                new GregorianCalendar(2020, Calendar.JANUARY, 20).getTime(),
+                asList(new OrderDto(9L, "TV"),
                         new OrderDto(10L, "Book"))));
         return customers;
     }

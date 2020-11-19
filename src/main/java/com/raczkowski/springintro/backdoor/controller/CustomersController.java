@@ -5,6 +5,7 @@ import com.raczkowski.springintro.backdoor.dto.OrderDto;
 import com.raczkowski.springintro.backdoor.exception.CustomerNotFoundException;
 import com.raczkowski.springintro.backdoor.exception.OrderNotFoundException;
 import com.raczkowski.springintro.backdoor.service.CustomerService;
+import com.raczkowski.springintro.backdoor.util.SortType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +23,16 @@ public class CustomersController {
         this.customerService = customerService;
     }
 
+//    @GetMapping("/customers")
+//    public List<CustomerDto> getCustomers() {
+//        return customerService.getCustomers();
+//    }
+
     @GetMapping("/customers")
-    public List<CustomerDto> getCustomers() {
-        return customerService.getCustomers();
+    public List<CustomerDto> getCustomersWithQuery(@RequestParam(required = false) String sortBy) {
+        return sortBy != null ?
+                customerService.getSortedCustomers(SortType.valueOf(sortBy)) :
+                customerService.getCustomers();
     }
 
     @GetMapping("/customers/{id}")

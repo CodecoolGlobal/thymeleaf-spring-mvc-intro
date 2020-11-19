@@ -1,7 +1,9 @@
 package com.raczkowski.springintro.backdoor.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Date;
 import java.util.List;
 
 public class CustomerDto {
@@ -9,6 +11,9 @@ public class CustomerDto {
     private Long id;
     private String name;
     private String address;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date registrationDate;
     @JsonIgnore
     private List<OrderDto> orders;
 
@@ -18,10 +23,12 @@ public class CustomerDto {
     public CustomerDto(Long id,
                        String name,
                        String address,
+                       Date registrationDate,
                        List<OrderDto> orders) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.registrationDate = registrationDate;
         this.orders = orders;
     }
 
@@ -47,6 +54,14 @@ public class CustomerDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public List<OrderDto> getOrders() {
