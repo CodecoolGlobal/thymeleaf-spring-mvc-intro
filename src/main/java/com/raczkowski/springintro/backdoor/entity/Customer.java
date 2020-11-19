@@ -1,12 +1,10 @@
 package com.raczkowski.springintro.backdoor.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
-@Entity
+@Entity(name = "CUSTOMERS")
 public class Customer {
 
     @Id
@@ -14,8 +12,10 @@ public class Customer {
     private Long id;
     private String name;
     private String address;
-
     private Date registrationDate;
+
+    @OneToMany
+    private List<Order> orders;
 
     public Customer() {
     }
@@ -50,5 +50,13 @@ public class Customer {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
