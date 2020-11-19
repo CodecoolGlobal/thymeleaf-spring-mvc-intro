@@ -7,13 +7,18 @@ import javax.persistence.Id;
 
 @Entity(name = "ORDERS")
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String product;
+    private Integer totalPrice;
 
     public Order() {
+    }
+
+    public Order(String product, Integer totalPrice) {
+        this.product = product;
+        this.totalPrice = totalPrice;
     }
 
     public Long getId() {
@@ -30,5 +35,13 @@ public class Order {
 
     public void setProduct(String product) {
         this.product = product;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity(name = "CUSTOMERS")
 public class Customer {
 
@@ -12,12 +14,23 @@ public class Customer {
     private Long id;
     private String name;
     private String address;
+    @Temporal(TemporalType.DATE)
     private Date registrationDate;
 
-    @OneToMany
+    @OneToMany(cascade = ALL)
     private List<Order> orders;
 
     public Customer() {
+    }
+
+    public Customer(String name,
+                    String address,
+                    Date registrationDate,
+                    List<Order> orders) {
+        this.name = name;
+        this.address = address;
+        this.registrationDate = registrationDate;
+        this.orders = orders;
     }
 
     public Long getId() {
