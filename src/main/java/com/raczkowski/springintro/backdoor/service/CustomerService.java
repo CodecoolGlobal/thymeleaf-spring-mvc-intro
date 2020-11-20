@@ -67,7 +67,9 @@ public class CustomerService {
     }
 
     public void updateCustomer(Long id, CustomerDto customerDto) {
-        customerRepository.save(customerDtoToCustomerConverter.convert(customerDto));
+        Customer customer = customerDtoToCustomerConverter.convert(customerDto);
+        customer.setId(id);
+        customerRepository.save(customer);
     }
 
     public List<OrderDto> getOrdersForCustomer(Long id) {

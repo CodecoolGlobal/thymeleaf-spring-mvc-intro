@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.emptyList;
+
 @Component
 public class CustomerDtoToCustomerConverter {
 
@@ -17,11 +19,10 @@ public class CustomerDtoToCustomerConverter {
     }
 
     public Customer convert(CustomerDto customerDto) {
-        return new Customer(customerDto.getId(),
-                customerDto.getName(),
+        return new Customer(customerDto.getName(),
                 customerDto.getAddress(),
                 customerDto.getRegistrationDate(),
-                orderConverter.convertAll(customerDto.getOrders()));
+                customerDto.getOrders() != null ? orderConverter.convertAll(customerDto.getOrders()) : emptyList());
     }
 
     public List<Customer> convertAll(List<CustomerDto> customerDtos) {
