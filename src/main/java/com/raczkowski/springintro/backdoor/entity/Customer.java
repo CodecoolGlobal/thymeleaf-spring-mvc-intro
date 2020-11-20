@@ -33,6 +33,18 @@ public class Customer {
         this.orders = orders;
     }
 
+    public Customer(Long id,
+                    String name,
+                    String address,
+                    Date registrationDate,
+                    List<Order> orders) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.registrationDate = registrationDate;
+        this.orders = orders;
+    }
+
     public Long getId() {
         return id;
     }

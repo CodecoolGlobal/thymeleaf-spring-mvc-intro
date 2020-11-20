@@ -16,6 +16,12 @@ public class Order {
     public Order() {
     }
 
+    public Order(Long id, String product, Integer totalPrice) {
+        this.id = id;
+        this.product = product;
+        this.totalPrice = totalPrice;
+    }
+
     public Order(String product, Integer totalPrice) {
         this.product = product;
         this.totalPrice = totalPrice;

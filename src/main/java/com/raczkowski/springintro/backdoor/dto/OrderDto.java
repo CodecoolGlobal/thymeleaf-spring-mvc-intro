@@ -4,13 +4,15 @@ public class OrderDto {
 
     private Long id;
     private String product;
+    private Integer totalPrice;
 
     public OrderDto() {
     }
 
-    public OrderDto(Long id, String product) {
+    public OrderDto(Long id, String product, Integer totalPrice) {
         this.id = id;
         this.product = product;
+        this.totalPrice = totalPrice;
     }
 
     public Long getId() {
@@ -27,5 +29,13 @@ public class OrderDto {
 
     public void setProduct(String product) {
         this.product = product;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
