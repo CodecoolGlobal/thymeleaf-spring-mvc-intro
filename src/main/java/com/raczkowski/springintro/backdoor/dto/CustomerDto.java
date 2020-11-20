@@ -1,10 +1,15 @@
 package com.raczkowski.springintro.backdoor.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class CustomerDto {
 
@@ -30,6 +35,16 @@ public class CustomerDto {
         this.address = address;
         this.registrationDate = registrationDate;
         this.orders = orders;
+    }
+
+    @JsonCreator
+    public CustomerDto(@JsonProperty("name") String name,
+                       @JsonProperty("address") String address,
+                       @JsonProperty("registrationDate") String registrationDate) throws ParseException {
+
+        this.name = name;
+        this.address = address;
+        this.registrationDate = formatDate(registrationDate);
     }
 
     public Long getId() {
@@ -70,5 +85,10 @@ public class CustomerDto {
 
     public void setOrders(List<OrderDto> orders) {
         this.orders = orders;
+    }
+
+    private Date formatDate(String date) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return simpleDateFormat.parse(date);
     }
 }
