@@ -23,11 +23,6 @@ public class CustomersController {
         this.customerService = customerService;
     }
 
-//    @GetMapping("/customers")
-//    public List<CustomerDto> getCustomers() {
-//        return customerService.getCustomers();
-//    }
-
     @GetMapping("/customers")
     public List<CustomerDto> getCustomersWithQuery(@RequestParam(required = false) String sortBy) {
         return sortBy != null ?
