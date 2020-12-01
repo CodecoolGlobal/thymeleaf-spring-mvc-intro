@@ -1,4 +1,4 @@
-package com.raczkowski.springintro.github;
+package com.raczkowski.springintro.github.exception;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 

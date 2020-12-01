@@ -1,9 +1,8 @@
-package com.raczkowski.springintro.github;
+package com.raczkowski.springintro.github.controller;
 
-import com.raczkowski.springintro.backdoor.exception.CustomerNotFoundException;
-import com.raczkowski.springintro.backdoor.exception.OrderNotFoundException;
-import com.raczkowski.springintro.github.client.GithubClient;
+import com.raczkowski.springintro.github.client.async.GithubAsyncHttpClient;
 import com.raczkowski.springintro.github.dto.GithubRepositoryDto;
+import com.raczkowski.springintro.github.exception.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +15,9 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @RestController
 public class RepositoryController {
 
-    private GithubClient githubClient;
+    private GithubAsyncHttpClient githubClient;
 
-    public RepositoryController(GithubClient githubClient) {
+    public RepositoryController(GithubAsyncHttpClient githubClient) {
         this.githubClient = githubClient;
     }
 
