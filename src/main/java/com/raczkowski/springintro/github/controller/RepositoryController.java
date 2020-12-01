@@ -2,6 +2,7 @@ package com.raczkowski.springintro.github.controller;
 
 import com.raczkowski.springintro.github.client.async.GithubAsyncHttpClient;
 import com.raczkowski.springintro.github.client.sync.GithubSyncHttpClient;
+import com.raczkowski.springintro.github.dto.GithubRepositoryDto;
 import com.raczkowski.springintro.github.exception.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -39,8 +40,8 @@ public class RepositoryController {
     }
 
     @GetMapping("/repositories/{owner}/{repositoryName}")
-    public HttpResponse<String> getRepository(@PathVariable String owner,
-                                              @PathVariable String repositoryName) throws InterruptedException, IOException, URISyntaxException {
+    public GithubRepositoryDto getRepository(@PathVariable String owner,
+                                             @PathVariable String repositoryName) throws InterruptedException, IOException, URISyntaxException {
         return githubSyncHttpClient.getGithubRepository(owner, repositoryName);
     }
 

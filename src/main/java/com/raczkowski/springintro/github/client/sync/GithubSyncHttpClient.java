@@ -1,6 +1,9 @@
 package com.raczkowski.springintro.github.client.sync;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.raczkowski.springintro.github.configuration.ApplicationProperties;
+import com.raczkowski.springintro.github.dto.GithubRepositoryDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
@@ -30,15 +33,16 @@ public class GithubSyncHttpClient {
                 .build();
     }
 
-    public HttpResponse<String> getGithubRepository(String owner, String repositoryName) throws URISyntaxException, IOException, InterruptedException {
-
+    public GithubRepositoryDto getGithubRepository(String owner, String repositoryName) throws URISyntaxException, IOException, InterruptedException {
         HttpRequest get = HttpRequest.newBuilder()
                 .uri(new URI(String.format(GITHUB_API_BASE_URL, owner, repositoryName)))
                 .headers(HttpHeaders.CONTENT_TYPE, GITHUB_V3_MIME_TYPE)
                 .GET()
                 .build();
 
-        return httpClient.send(get, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> httpResponse = httpClient.send(get, HttpResponse.BodyHandlers.ofString());
+
+        return deserialize(httpResponse.body());
     }
 
     private Authenticator authenticator(String username, String password) {
@@ -48,6 +52,11 @@ public class GithubSyncHttpClient {
                 return new PasswordAuthentication(username, password.toCharArray());
             }
         };
+    }
+
+    private GithubRepositoryDto deserialize(String body) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(body, GithubRepositoryDto.class);
     }
 
 }
