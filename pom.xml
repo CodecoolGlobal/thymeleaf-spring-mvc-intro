@@ -15,7 +15,7 @@
     <description>spring-mvc-thymeleaf-orm-mvc-tests</description>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>11</java.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger-annotations.version>1.5.21</swagger-annotations.version>
         <swagger-models.version>1.5.21</swagger-models.version>

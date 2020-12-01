@@ -3,7 +3,6 @@ package com.raczkowski.springintro;
 import com.raczkowski.springintro.backdoor.entity.Customer;
 import com.raczkowski.springintro.backdoor.entity.Order;
 import com.raczkowski.springintro.backdoor.repository.CustomerRepository;
-import com.raczkowski.springintro.github.configuration.ApplicationProperties;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,12 +18,9 @@ import static java.util.Arrays.asList;
 public class Application {
 
     private CustomerRepository customerRepository;
-    private ApplicationProperties applicationProperties;
 
-    public Application(CustomerRepository customerRepository,
-                       ApplicationProperties applicationProperties) {
+    public Application(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.applicationProperties = applicationProperties;
     }
 
     public static void main(String[] args) {
@@ -35,8 +31,6 @@ public class Application {
     public CommandLineRunner runner() {
         return (args) -> {
             customerRepository.saveAll(createCustomers());
-
-            System.out.println(applicationProperties.getGithub().getUsername());
         };
     }
 
