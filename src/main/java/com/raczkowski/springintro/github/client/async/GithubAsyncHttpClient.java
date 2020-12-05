@@ -1,8 +1,8 @@
 package com.raczkowski.springintro.github.client.async;
 
-import com.raczkowski.springintro.github.exception.NotFoundException;
 import com.raczkowski.springintro.github.configuration.ApplicationProperties;
 import com.raczkowski.springintro.github.dto.GithubRepositoryDto;
+import com.raczkowski.springintro.github.exception.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
