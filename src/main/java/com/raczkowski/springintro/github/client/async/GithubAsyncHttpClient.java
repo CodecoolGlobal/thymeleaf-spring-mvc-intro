@@ -9,7 +9,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import static java.lang.String.format;
-import static org.springframework.web.reactive.function.client.ExchangeFilterFunctions.basicAuthentication;
 
 @Service
 public class GithubAsyncHttpClient {
@@ -18,14 +17,13 @@ public class GithubAsyncHttpClient {
     private static final String GITHUB_V3_MIME_TYPE = "application/vnd.github.v3+json";
     private static final String REPOSITORY_NOT_FOUND_EXCEPTION_MESSAGE = "Repository not found for given name: %s";
     private final WebClient webClient;
+    private final ApplicationProperties applicationProperties;
 
     public GithubAsyncHttpClient(ApplicationProperties applicationProperties) {
+        this.applicationProperties = applicationProperties;
         this.webClient = WebClient.builder()
                 .baseUrl(GITHUB_API_BASE_URL)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_V3_MIME_TYPE)
-                .filter(basicAuthentication(
-                        applicationProperties.getGithub().getUsername(),
-                        applicationProperties.getGithub().getToken()))
                 .build();
     }
 

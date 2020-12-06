@@ -22,13 +22,12 @@ public class GithubSyncHttpClient {
     private static final String GITHUB_API_BASE_URL = "https://api.github.com/repos/%s/%s";
     private static final String GITHUB_V3_MIME_TYPE = "application/vnd.github.v3+json";
     private static final String REPOSITORY_NOT_FOUND_EXCEPTION_MESSAGE = "Repository not found for given name: %s";
-
+    private final ApplicationProperties applicationProperties;
     private final HttpClient httpClient;
 
     public GithubSyncHttpClient(ApplicationProperties applicationProperties) {
+        this.applicationProperties = applicationProperties;
         this.httpClient = HttpClient.newBuilder()
-                .authenticator(authenticator(applicationProperties.getGithub().getUsername(),
-                        applicationProperties.getGithub().getToken()))
                 .version(HttpClient.Version.HTTP_1_1)
                 .build();
     }
@@ -43,6 +42,17 @@ public class GithubSyncHttpClient {
         HttpResponse<String> httpResponse = httpClient.send(get, HttpResponse.BodyHandlers.ofString());
 
         return deserialize(httpResponse.body());
+    }
+
+    public HttpResponse<String> deleteGithubRepository(String owner, String repositoryName) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest get = HttpRequest.newBuilder()
+                .uri(new URI(String.format(GITHUB_API_BASE_URL, owner, repositoryName)))
+                .headers(HttpHeaders.ACCEPT, GITHUB_V3_MIME_TYPE)
+                .headers(HttpHeaders.AUTHORIZATION, String.format("token %s", applicationProperties.getGithub().getToken()))
+                .DELETE()
+                .build();
+
+        return httpClient.send(get, HttpResponse.BodyHandlers.ofString());
     }
 
     private Authenticator authenticator(String username, String password) {
