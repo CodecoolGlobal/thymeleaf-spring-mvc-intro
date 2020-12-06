@@ -35,7 +35,7 @@ public class GithubSyncHttpClient {
     public GithubRepositoryDto getGithubRepository(String owner, String repositoryName) throws URISyntaxException, IOException, InterruptedException {
         HttpRequest get = HttpRequest.newBuilder()
                 .uri(new URI(String.format(GITHUB_API_BASE_URL, owner, repositoryName)))
-                .headers(HttpHeaders.CONTENT_TYPE, GITHUB_V3_MIME_TYPE)
+                .headers(HttpHeaders.ACCEPT, GITHUB_V3_MIME_TYPE)
                 .GET()
                 .build();
 
